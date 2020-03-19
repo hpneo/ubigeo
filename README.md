@@ -1,9 +1,11 @@
 # Ubigeo  - Listado de ubicaciones para Perú
 
+Datos obtenidos de http://webinei.inei.gob.pe/anda_inei/index.php/catalog/REGISTROS#_r=&sort_by=proddate&sort_order=desc
+
 ## Uso
 
-### Listar departamentos:
-http://ubigeo.herokuapp.com/departamentos
+### Listar departamentos (Actualizado al 2006):
+https://ubigeo-peru.herokuapp.com/departamentos
 
 ```javascript
 [
