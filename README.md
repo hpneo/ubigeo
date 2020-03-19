@@ -5,7 +5,7 @@ Datos obtenidos de http://webinei.inei.gob.pe/anda_inei/index.php/catalog/REGIST
 ## Uso
 
 ### Listar departamentos (Actualizado al 2006):
-https://ubigeo-peru.herokuapp.com/departamentos
+https://ubigeo-pe.herokuapp.com/departamentos
 
 ```javascript
 [
