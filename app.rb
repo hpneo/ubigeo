@@ -1,11 +1,10 @@
 require 'sinatra'
 require 'json'
-require 'dbf'
 require_relative './ubigeo'
+require_relative './directorio'
 
 class Application < Sinatra::Base
   set :protection, :except => :json_csrf
-  @@table = DBF::Table.new('db/ubigeo.dbf')
 
   before do
     if request.request_method == 'OPTIONS'
@@ -22,7 +21,7 @@ class Application < Sinatra::Base
 
     departments = Ubigeo.where(codprov: '00', coddist: '00')
 
-    departments.map{ |department|
+    departments.map { |department|
       {
         coddpto: department[:coddpto],
         nombre: department[:nombre]
@@ -90,19 +89,36 @@ class Application < Sinatra::Base
     end
   end
 
-  private
-  def provincias(coddpto)
-    provinces = Ubigeo.where(coddist: '00', coddpto: coddpto).select{ |province|
-      province[:codprov] != '00'
-    }
+  get '/v2' do
+    content_type :json
 
-    provinces.map{ |province|
+    municipalities = Directorio.where(params)
+
+    municipalities.to_json
+  end
+
+  get '/v2/:id' do
+    content_type :json
+
+    municipality = Directorio.where(idmunici: params[:id]).first
+
+    municipality.to_json
+  end
+
+  private
+
+  def provincias(coddpto)
+    provinces = Ubigeo.where(coddist: '00', coddpto: coddpto).select do |province|
+      province[:codprov] != '00'
+    end
+
+    provinces.map do |province|
       {
         coddpto: province[:coddpto],
         codprov: province[:codprov],
         nombre: province[:nombre]
       }
-    }
+    end
   end
 
   def distritos(coddpto, codprov)
@@ -110,13 +126,13 @@ class Application < Sinatra::Base
       district[:coddist] != '00'
     }
 
-    districts.map{ |district|
+    districts.map do |district|
       {
         coddpto: district[:coddpto],
         codprov: district[:codprov],
         coddist: district[:coddist],
         nombre: district[:nombre]
       }
-    }
+    end
   end
 end

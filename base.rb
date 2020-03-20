@@ -19,7 +19,7 @@ class Base < OpenStruct
     end
 
     def first
-      row_to_attributes(table.first)
+      new(row_to_attributes(table.first))
     end
 
     def count
@@ -34,11 +34,19 @@ class Base < OpenStruct
     end
 
     def table
-      @table ||= DBF::Table.new(table_name)
+      @table ||= DBF::Table.new(table_name, nil, 'cp850')
     end
 
     def columns
       @columns ||= self.table.columns.map(&:underscored_name)
     end
+  end
+
+  def as_json
+    to_h
+  end
+
+  def to_json(*args)
+    as_json.to_json(*args)
   end
 end
