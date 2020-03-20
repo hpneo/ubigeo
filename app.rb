@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'json'
 require 'dbf'
+require_relative './ubigeo'
 
 class Application < Sinatra::Base
   set :protection, :except => :json_csrf
@@ -19,7 +20,7 @@ class Application < Sinatra::Base
   get '/departamentos' do
     content_type :json
 
-    departments = @@table.find(:all, codprov: '00', coddist: '00')
+    departments = Ubigeo.where(codprov: '00', coddist: '00')
 
     departments.map{ |department|
       {
@@ -32,7 +33,7 @@ class Application < Sinatra::Base
   get '/departamentos/:id' do
     content_type :json
 
-    department = @@table.find(:first, coddist: '00', codprov: '00', coddpto: params[:id])
+    department = Ubigeo.where(coddist: '00', codprov: '00', coddpto: params[:id]).first
 
     {
       coddpto: department[:coddpto],
@@ -44,7 +45,7 @@ class Application < Sinatra::Base
   get '/departamentos/:department_id/provincias/:id' do
     content_type :json
 
-    province = @@table.find(:first, coddist: '00', codprov: params[:id], coddpto: params[:department_id])
+    province = Ubigeo.where(coddist: '00', codprov: params[:id], coddpto: params[:department_id]).first
 
     {
       coddpto: province[:coddpto],
@@ -61,7 +62,7 @@ class Application < Sinatra::Base
 
     case ubigeo.count
     when 1
-      department = @@table.find(:first, coddist: '00', codprov: '00', coddpto: ubigeo[0])
+      department = Ubigeo.where(coddist: '00', codprov: '00', coddpto: ubigeo[0]).first
 
       {
         coddpto: department[:coddpto],
@@ -69,7 +70,7 @@ class Application < Sinatra::Base
         provincias: provincias(department[:coddpto])
       }.to_json
     when 2
-      province = @@table.find(:first, coddist: '00', codprov: ubigeo[1], coddpto: ubigeo[0])
+      province = Ubigeo.where(coddist: '00', codprov: ubigeo[1], coddpto: ubigeo[0]).first
 
       {
         coddpto: province[:coddpto],
@@ -78,7 +79,7 @@ class Application < Sinatra::Base
         distritos: distritos(province[:coddpto], province[:codprov])
       }.to_json
     when 3
-      district = @@table.find(:first, coddist: ubigeo[2], codprov: ubigeo[1], coddpto: ubigeo[0])
+      district = Ubigeo.where(coddist: ubigeo[2], codprov: ubigeo[1], coddpto: ubigeo[0]).first
 
       {
         coddpto: district[:coddpto],
@@ -91,7 +92,7 @@ class Application < Sinatra::Base
 
   private
   def provincias(coddpto)
-    provinces = @@table.find(:all, coddist: '00', coddpto: coddpto).select{ |province|
+    provinces = Ubigeo.where(coddist: '00', coddpto: coddpto).select{ |province|
       province[:codprov] != '00'
     }
 
@@ -105,7 +106,7 @@ class Application < Sinatra::Base
   end
 
   def distritos(coddpto, codprov)
-    districts = @@table.find(:all, codprov: codprov, coddpto: coddpto).select{ |district|
+    districts = Ubigeo.where(codprov: codprov, coddpto: coddpto).select{ |district|
       district[:coddist] != '00'
     }
 
