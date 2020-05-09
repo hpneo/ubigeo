@@ -4,6 +4,87 @@ Datos obtenidos de http://webinei.inei.gob.pe/anda_inei/index.php/catalog/REGIST
 
 ## Uso
 
+### Listar municipalidades (Actualizado al 2018)
+
+https://ubigeo-pe.herokuapp.com/v2
+
+```javascript
+[
+  {
+    idmunici: "010101",
+    ccdd: "01",
+    ccpp: "01",
+    ccdi: "01",
+    departamen: "AMAZONAS",
+    provincia: "CHACHAPOYAS",
+    distrito: "CHACHAPOYAS",
+    catmuni: 1,
+    vfi: 1,
+    p03: 0,
+    p04: "Jr. Ortiz Arrieta N° 588",
+    cc: "041",
+    p05: "477002",
+    p06: 478299,
+    p07: "WWW.FACEBOOK.COM/MUNICHACHAPOYAS/",
+    p08: "alcaldia@munichachapoyas.gob.pe",
+    p09: "WWW.MUNICHACHAPOYAS.GOB.PE",
+    p10: "DIOGENES HUMBERTO ZAVALETA TENORIO",
+    p10_1: "2"
+  },
+  {
+    idmunici: "010102",
+    ccdd: "01",
+    ccpp: "01",
+    ccdi: "02",
+    departamen: "AMAZONAS",
+    provincia: "CHACHAPOYAS",
+    distrito: "ASUNCION",
+    catmuni: 2,
+    vfi: 1,
+    p03: 1,
+    p04: "Calle Nicarmal S/N",
+    cc: "041",
+    p05: "996131436",
+    p06: 969975528,
+    p07: "",
+    p08: "munidistritalasuncion@gmail.com",
+    p09: "",
+    p10: "MIRIAM VICTORIA BACALLA DEL CASTILLO",
+    p10_1: "1"
+  },
+  // ...
+]
+```
+
+### Detalle de municipalidad por UBIGEO (Actualizado al 2018)
+
+https://ubigeo-pe.herokuapp.com/v2/150120
+
+```js
+{
+  idmunici: "150120",
+  ccdd: "15",
+  ccpp: "01",
+  ccdi: "20",
+  departamen: "LIMA",
+  provincia: "LIMA",
+  distrito: "MAGDALENA DEL MAR",
+  catmuni: 2,
+  vfi: 1,
+  p03: 0,
+  p04: "Av. Brasil N° 3501",
+  cc: "01",
+  p05: "4180700",
+  p06: 4180723,
+  p07: "WWW.FACEBOOK.COM/MUNIMAGDALENA",
+  p08: "layarza@munimagdalena.gob.pe",
+  p09: "WWW.MUNIMAGDALENA.GOB.PE",
+  p10: "FRANCIS JAMES ALLISON OYAGUE",
+  p10_1: "2"
+}
+```
+
+
 ### Listar departamentos (Actualizado al 2006):
 https://ubigeo-pe.herokuapp.com/departamentos
 
@@ -113,7 +194,7 @@ https://ubigeo-pe.herokuapp.com/departamentos
 ```
 
 ### Listar provincias de un departamento:
-https://ubigeo.herokuapp.com/departamentos/15
+https://ubigeo-pe.herokuapp.com/departamentos/15
 
 ```javascript
 {
@@ -175,7 +256,7 @@ https://ubigeo.herokuapp.com/departamentos/15
 ```
 
 ### Listar distritos de una provincia:
-https://ubigeo.herokuapp.com/departamentos/15/provincias/01
+https://ubigeo-pe.herokuapp.com/departamentos/15/provincias/01
 
 ```javascript
 {
@@ -446,7 +527,7 @@ https://ubigeo.herokuapp.com/departamentos/15/provincias/01
 ```
 
 ### Detalle de ubicación por UBIGEO:
-https://ubigeo.herokuapp.com/ubigeo/150120
+https://ubigeo-pe.herokuapp.com/ubigeo/150120
 
 ```javascript
 {
