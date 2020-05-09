@@ -113,7 +113,7 @@ https://ubigeo-pe.herokuapp.com/departamentos
 ```
 
 ### Listar provincias de un departamento:
-http://ubigeo.herokuapp.com/departamentos/15
+https://ubigeo.herokuapp.com/departamentos/15
 
 ```javascript
 {
@@ -175,7 +175,7 @@ http://ubigeo.herokuapp.com/departamentos/15
 ```
 
 ### Listar distritos de una provincia:
-http://ubigeo.herokuapp.com/departamentos/15/provincias/01
+https://ubigeo.herokuapp.com/departamentos/15/provincias/01
 
 ```javascript
 {
@@ -446,7 +446,7 @@ http://ubigeo.herokuapp.com/departamentos/15/provincias/01
 ```
 
 ### Detalle de ubicación por UBIGEO:
-http://ubigeo.herokuapp.com/ubigeo/150120
+https://ubigeo.herokuapp.com/ubigeo/150120
 
 ```javascript
 {

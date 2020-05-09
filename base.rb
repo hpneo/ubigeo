@@ -38,7 +38,7 @@ class Base < OpenStruct
     end
 
     def columns
-      @columns ||= self.table.columns.map(&:underscored_name)
+      @columns ||= table.columns.map(&:underscored_name)
     end
   end
 

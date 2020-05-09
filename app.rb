@@ -21,12 +21,12 @@ class Application < Sinatra::Base
 
     departments = Ubigeo.where(codprov: '00', coddist: '00')
 
-    departments.map { |department|
+    departments.map do |department|
       {
         coddpto: department[:coddpto],
-        nombre: department[:nombre]
+        nombre: department[:nombre],
       }
-    }.to_json
+    end.to_json
   end
 
   get '/departamentos/:id' do
@@ -37,7 +37,7 @@ class Application < Sinatra::Base
     {
       coddpto: department[:coddpto],
       nombre: department[:nombre],
-      provincias: provincias(department[:coddpto])
+      provincias: provincias(department[:coddpto]),
     }.to_json
   end
 
@@ -50,7 +50,7 @@ class Application < Sinatra::Base
       coddpto: province[:coddpto],
       codprov: province[:codprov],
       nombre: province[:nombre],
-      distritos: distritos(province[:coddpto], province[:codprov])
+      distritos: distritos(province[:coddpto], province[:codprov]),
     }.to_json
   end
 
@@ -66,7 +66,7 @@ class Application < Sinatra::Base
       {
         coddpto: department[:coddpto],
         nombre: department[:nombre],
-        provincias: provincias(department[:coddpto])
+        provincias: provincias(department[:coddpto]),
       }.to_json
     when 2
       province = Ubigeo.where(coddist: '00', codprov: ubigeo[1], coddpto: ubigeo[0]).first
@@ -75,7 +75,7 @@ class Application < Sinatra::Base
         coddpto: province[:coddpto],
         codprov: province[:codprov],
         nombre: province[:nombre],
-        distritos: distritos(province[:coddpto], province[:codprov])
+        distritos: distritos(province[:coddpto], province[:codprov]),
       }.to_json
     when 3
       district = Ubigeo.where(coddist: ubigeo[2], codprov: ubigeo[1], coddpto: ubigeo[0]).first
@@ -84,7 +84,7 @@ class Application < Sinatra::Base
         coddpto: district[:coddpto],
         codprov: district[:codprov],
         coddist: district[:coddist],
-        nombre: district[:nombre]
+        nombre: district[:nombre],
       }.to_json
     end
   end
@@ -116,22 +116,22 @@ class Application < Sinatra::Base
       {
         coddpto: province[:coddpto],
         codprov: province[:codprov],
-        nombre: province[:nombre]
+        nombre: province[:nombre],
       }
     end
   end
 
   def distritos(coddpto, codprov)
-    districts = Ubigeo.where(codprov: codprov, coddpto: coddpto).select{ |district|
+    districts = Ubigeo.where(codprov: codprov, coddpto: coddpto).select do |district|
       district[:coddist] != '00'
-    }
+    end
 
     districts.map do |district|
       {
         coddpto: district[:coddpto],
         codprov: district[:codprov],
         coddist: district[:coddist],
-        nombre: district[:nombre]
+        nombre: district[:nombre],
       }
     end
   end

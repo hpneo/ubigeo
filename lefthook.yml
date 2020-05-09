@@ -1,0 +1,5 @@
+pre-commit:
+  commands:
+    rubocop:
+      glob: "*.rb"
+      run: bundle exec rubocop --safe-auto-correct --disable-uncorrectable --force-exclusion {staged_files}
