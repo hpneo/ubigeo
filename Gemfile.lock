@@ -21,6 +21,7 @@ GEM
     builder (3.2.4)
     concurrent-ruby (1.1.6)
     daemons (1.3.1)
+    dalli (2.7.10)
     dbf (4.1.2)
     eventmachine (1.2.7)
     i18n (1.8.2)
@@ -81,6 +82,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeresource
+  dalli
   dbf
   json
   rack-cache

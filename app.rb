@@ -1,3 +1,4 @@
+require 'dalli'
 require 'sinatra'
 require 'rack/deflater'
 require 'rack/cache'
