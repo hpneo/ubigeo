@@ -3,14 +3,18 @@ require 'sinatra'
 require 'rack/deflater'
 require 'rack/cache'
 require 'json'
-require_relative './ubigeo'
-require_relative './directorio'
+require_relative './models/ubigeo'
+require_relative './models/renamu_2018'
+require_relative './models/renamu_2019'
+require_relative './models/renamu_2020'
 require_relative './endpoints/legacy'
 require_relative './endpoints/v1'
 require_relative './endpoints/v2'
+require_relative './endpoints/v3'
+require_relative './endpoints/v4'
 
 class Application < Sinatra::Base
-  set :protection, :except => :json_csrf
+  set :protection, except: :json_csrf
   use Rack::Deflater
 
   if ENV['MEMCACHEDCLOUD_SERVERS']
@@ -41,4 +45,6 @@ class Application < Sinatra::Base
   use Legacy
   use V1
   use V2
+  use V3
+  use V4
 end

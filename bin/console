@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
 
-require_relative '../ubigeo'
-require_relative '../directorio'
+require_relative '../models/ubigeo'
+require_relative '../models/renamu_2018'
+require_relative '../models/renamu_2019'
+require_relative '../models/renamu_2020'
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.

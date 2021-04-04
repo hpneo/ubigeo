@@ -18,6 +18,10 @@ class Base < OpenStruct
       end
     end
 
+    def find_by(options = {})
+      new(row_to_attributes(table.find(:first, options)))
+    end
+
     def first
       new(row_to_attributes(table.first))
     end

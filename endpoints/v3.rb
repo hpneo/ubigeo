@@ -1,18 +1,18 @@
 require 'sinatra/base'
 
-class V2 < Sinatra::Base
-  get '/v2' do
+class V3 < Sinatra::Base
+  get '/v3' do
     content_type :json
 
-    municipalities = Renamu2018.where(uniformized_params)
+    municipalities = Renamu2019.where(uniformized_params)
 
     municipalities.to_json
   end
 
-  get '/v2/:id' do
+  get '/v3/:id' do
     content_type :json
 
-    municipality = Renamu2018.find_by(idmunici: params[:id])
+    municipality = Renamu2019.find_by(idmunici: params[:id])
 
     municipality.to_json
   end
@@ -22,7 +22,7 @@ class V2 < Sinatra::Base
       ccdd: params[:coddpto],
       ccpp: params[:codprov],
       ccdi: params[:coddist],
-      catmuni: Renamu2018::TIPOS.select { |key, value| value == params[:tipo] }.keys.first,
+      tipomuni: Renamu2019::TIPOS.select { |key, value| value == params[:tipo] }.keys.first,
     }.select { |key, value| value }
   end
 end

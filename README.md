@@ -6,7 +6,53 @@ Datos obtenidos de http://webinei.inei.gob.pe/anda_inei/index.php/catalog/REGIST
 
 ## Uso
 
-### Listar municipalidades (Actualizado al 2018)
+### Listar municipalidades (Actualizado al 2020)
+
+#### `v4`: Registro Nacional de Municipalidades - RENAMU 2020
+
+https://ubigeo-pe.herokuapp.com/v4
+
+```javascript
+[
+  {
+    ubigeo: "010101",
+    coddpto: "01",
+    codprov: "01",
+    coddist: "01",
+    nombre: "CHACHAPOYAS",
+    tipo: "provincia",
+    direccion: "Jiron ORTIZ ARRIETA 588",
+    facebook: "www.facebook.com/munichachapoyas",
+    email: "alcaldia@munichachapoyas.gob.pe",
+    website: "www.munichachapoyas.gob.pe"
+  },
+  // ...
+]
+```
+
+#### `v3`: Registro Nacional de Municipalidades - RENAMU 2019
+
+https://ubigeo-pe.herokuapp.com/v3
+
+```javascript
+[
+  {
+    ubigeo: "010101",
+    coddpto: "01",
+    codprov: "01",
+    coddist: "01",
+    nombre: "CHACHAPOYAS",
+    tipo: "provincia",
+    direccion: "Jiron ORTIZ ARRIETA 588",
+    facebook: "www.facebook.com/munichachapoyas",
+    email: "alcaldia@munichachapoyas.gob.pe",
+    website: "www.munichachapoyas.gob.pe"
+  },
+  // ...
+]
+```
+
+#### `v2`: Registro Nacional de Municipalidades - RENAMU 2018
 
 https://ubigeo-pe.herokuapp.com/v2
 
@@ -30,7 +76,7 @@ https://ubigeo-pe.herokuapp.com/v2
 
 ### Filtrar por parámetros:
 
-https://ubigeo-pe.herokuapp.com/v2?coddpto=01&codprov=02&tipo=provincia
+https://ubigeo-pe.herokuapp.com/[VERSION]?coddpto=01&codprov=02&tipo=provincia
 
 ```javascript
 [
@@ -45,14 +91,13 @@ https://ubigeo-pe.herokuapp.com/v2?coddpto=01&codprov=02&tipo=provincia
     facebook: "www.facebook.com/munibaguaperu/",
     email: "secretariageneral@munibagua.gob.pe",
     website: "www.munibagua.gob.pe"
-  },
-  // ...
+  }
 ]
 ```
 
-### Detalle de municipalidad por UBIGEO (Actualizado al 2018)
+### Detalle de municipalidad por UBIGEO:
 
-https://ubigeo-pe.herokuapp.com/v2/150120
+https://ubigeo-pe.herokuapp.com/[VERSION]/150120
 
 ```js
 {
