@@ -23,11 +23,31 @@ class Base < OpenStruct
     end
 
     def first
-      new(row_to_attributes(table.first))
+      new(row_to_attributes(table.find(:first)))
+    end
+
+    def last
+      new(row_to_attributes(table.record(table.record_count - 1)))
     end
 
     def count
-      table.count
+      table.record_count
+    end
+
+    def pluck(*column_names)
+      if column_names.size > 1
+        all.map do |record|
+          column_names.map do |column_name|
+            record[column_name]
+          end
+        end
+      else
+        column_name = column_names.first
+
+        all.map do |record|
+          record[column_name]
+        end
+      end
     end
 
     def row_to_attributes(row)
