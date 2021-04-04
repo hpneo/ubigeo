@@ -14,7 +14,6 @@ require_relative './endpoints/v3'
 require_relative './endpoints/v4'
 
 class Application < Sinatra::Base
-  set :protection, except: :json_csrf
   use Rack::Deflater
 
   if ENV['MEMCACHEDCLOUD_SERVERS']
